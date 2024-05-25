@@ -1,0 +1,11 @@
+@import "colors.scss";
+@import "bar.scss";
+@import "misc.scss";
+@import "ctrl.scss";
+
+* {
+  all: unset;
+  font-family: BlexMono Nerd Font Propo;
+  font-weight: bold;
+  color: $fg;
+}
