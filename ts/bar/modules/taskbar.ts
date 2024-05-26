@@ -9,13 +9,16 @@ export const empty = (monitor: number) => Widget.Label({
     label: "Hyprland",
     setup: (self: any) => self
         .hook(hyprland, (self: any, event?: string) => {
-            if (event === "movewindow" || "workspace")
-            self.visible = isempty(monitor)
+            switch(event) {
+                case "movewindow":
+                case "workspace":
+                case "openwindow":
+                case "closewindow":
+                    self.visible = isempty(monitor)
+                break;
+            }
         }, "event")
 });
-
-// const focus = (wsid: number) => hyprland.messageAsync(
-//     `dispatch workspace ${wsid}`)
 
 const DummyItem = (address: string) => Widget.Box({
     attribute: { address },
@@ -32,7 +35,6 @@ const AppItem = (address: string) => {
         tooltip_text: Utils.watch(client.title, hyprland, () =>
             hyprland.getClient(address)?.title || "",
         ),
-        // on_primary_click: () => focus(wsid),
         child: Widget.Button({label: substitutes[client.class] || client.class, className: "module"}),
         setup: (w: any) => w.hook(hyprland, () => {
             w.toggleClassName("active", hyprland.active.client.address === address)
