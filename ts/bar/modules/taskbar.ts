@@ -62,16 +62,15 @@ export const taskbar = (monitor: number) => Widget.Box({
     spacing: 8,
     children: reCalcChildren(monitor),
     setup: (w: any) => w
-        .hook(hyprland, (w: any, address?: string) => {
-            if (typeof address === "string")
-            w.children = w.children.filter((ch: any) => ch.attribute.address !== address)
-        }, "client-removed")
-        .hook(hyprland, (w: any, address?: string) => {
-            if (typeof address === "string")
-            w.children = reCalcChildren(monitor)
-        }, "client-added")
         .hook(hyprland, (w: any, event?: string) => {
-            if (event === "movewindow" || "workspace")
-            w.children = reCalcChildren(monitor)
+            switch (event) {
+                case "workspace":
+                case "movewindow":
+                case "openwindow":
+                case "closewindow":
+                    w.children.forEach((ch: any) => ch.destroy())
+                    w.children = reCalcChildren(monitor)
+                break;
+            }
         }, "event")
 })
