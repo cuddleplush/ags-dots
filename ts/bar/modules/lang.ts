@@ -1,3 +1,5 @@
+import { easyAsync } from "ts/utils";
+
 const Hyprland = await Service.import("hyprland")
 
 const Lang = () => Widget.Box({
@@ -6,7 +8,7 @@ const Lang = () => Widget.Box({
         Widget.Label({ label: "", className: "icon" }),
         Widget.Button({
             className: "module",
-            on_clicked: () => Utils.execAsync(['hyprctl', 'switchxkblayout', 'hs6209-usb-dongle', 'next'])
+            on_clicked: () => easyAsync("hyprctl switchxkblayout hs6209-usb-dongle next")
                 .catch((err: any) => print(err)),
             setup: (self: any) => self
                 .hook(Hyprland, (label: any, _kbName: any, layoutName = "EN") => {

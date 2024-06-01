@@ -1,6 +1,7 @@
 import { Bar } from "./bar/bar";
 import { Desktop } from "./desktop/desktop";
 import { ctrl } from "./ctrl/ctrl";
+// import { NotificationPopups } from "./notifs/notifs";
 
 import { forMonitors } from "./utils";
 
@@ -14,6 +15,7 @@ App.config({
         ...forMonitors(Bar),
         ...forMonitors(Desktop),
         ...forMonitors(ctrl),
+        // NotificationPopups(),
     ]
 })
 

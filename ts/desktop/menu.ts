@@ -1,6 +1,4 @@
-// import Gtk from 'gi://Gtk';
-// import Gdk from "gi://Gdk"
-// import { openSettings } from '../settings/theme.js';
+import { easyAsync } from "ts/utils";
 
 const Item = (label, on_activate) => Widget.MenuItem({
     on_activate,
@@ -15,71 +13,77 @@ const Item = (label, on_activate) => Widget.MenuItem({
     }),
 });
 
-export default () => Widget.Menu({
-    class_name: 'desktop-menu',
+export const menu = Widget.Menu({
+    class_name: "desktop-menu",
     children: [
-        Item(' Term', () => Utils.execAsync(['foot'])),
-        Item('󰋋 Audio', () => Utils.execAsync(['pavucontrol'])),
-        Item('󰝚 Music', () => Utils.execAsync(['tidal-hifi'])),
-        Item('󰈹 Browser', () => Utils.execAsync(['librewolf'])),
-        Item(' Screenshot', () => Utils.execAsync(['grimblast', '--notify', 'copysave', 'area'])),
+        Item("Terminal", () => easyAsync("foot")),
+        Item("Audio", () => easyAsync("pavucontrol")),
+        Item("Music", () => easyAsync("tidal-hifi")),
+        Item("Browser", () => easyAsync("librewolf")),
+        Item("Screenshot", () => easyAsync("grimblast --notify copysave area")),
+        Widget.MenuItem({ className: "menuitem-label", child: Widget.Separator({  vertical: false })}),
         Widget.MenuItem({
+            // className: "menuitem-label",
             child: Widget.Box({
                 children: [
                     Widget.Label({
-                        label: " Games",
+                        label: "Games",
                         hexpand: true,
                         xalign: 0,
                     }),
-                    Widget.Label(" ")
+                    Widget.Label("  ")
                 ],
             }),
             submenu: Widget.Menu({
                 children: [
-                    Item('Steam', () => Utils.execAsync(['steam'])),
-                    Item('Prism', () => Utils.execAsync(['prismlauncher',])),
-                    Item('Genshin', () => Utils.execAsync(['anime-game-launcher'])),
+                    Item("Steam", () => easyAsync("steam")),
+                    Item("Prism", () => easyAsync("prismlauncher",)),
+                    Item("Genshin", () => easyAsync("anime-game-launcher")),
                 ],
             }),
         }),
         Widget.MenuItem({
+            // className: "menuitem-label",
             child: Widget.Box({
                 children: [
                     Widget.Label({
-                        label: " Messaging",
+                        label: "Messaging",
                         hexpand: true,
                         xalign: 0,
                     }),
-                    Widget.Label(" ")
+                    Widget.Label("  ")
                 ],
             }),
             submenu: Widget.Menu({
                 children: [
-                    Item('Vesktop', () => Utils.execAsync(['vesktop'])),
-                    Item('Telegram', () => Utils.execAsync(['telegram-desktop',])),
+                    Item("Vesktop", () => easyAsync("vesktop")),
+                    Item("Telegram", () => easyAsync("telegram-desktop",)),
                 ],
             }),
         }),
+        Widget.MenuItem({ className: "menuitem-label", child: Widget.Separator({  vertical: false })}),
         Widget.MenuItem({
+            // className: "menuitem-label",
             child: Widget.Box({
                 children: [
                     Widget.Label({
-                        label: ' System',
+                        label: "Power",
                         hexpand: true,
                         xalign: 0,
                     }),
-                    Widget.Label(" ")
+                    Widget.Label("  ")
                 ],
             }),
             submenu: Widget.Menu({
                 children: [
-                    Item('Log Out', () => Utils.execAsync(['hyprctl', 'dispatch', 'exit'])),
-                    Item('Shutdown', () => Utils.execAsync(['fctl', 'poweroff'])),
-                    Item('Reboot', () => Utils.execAsync(['fctl', 'reboot'])),
+                    Item("Log Out", () => easyAsync("hyprctl dispatch exit")),
+                    Item("Shutdown", () => easyAsync("fctl poweroff")),
+                    Item("Reboot", () => easyAsync("fctl reboot")),
                 ],
             }),
         }),
-        // Item('Applications', () => Utils.execAsync(['tofi-drun', '--drun-launch=true'])),
+        Widget.MenuItem({ className: "menuitem-label", child: Widget.Separator({  vertical: false })}),
+        Item("Goblin Mode", () => easyAsync("pavucontrol")),
     ],
 });
 

@@ -1,7 +1,7 @@
-import menu from "./menu"
+import { menu } from "./menu"
 
 const DesktopBox = () => Widget.EventBox({
-    on_secondary_click: (_, event) => menu().popup_at_pointer(event),
+    on_secondary_click: (_, event) => menu.popup_at_pointer(event),
 })
 
 export const Desktop = (monitor: number) => Widget.Window({
