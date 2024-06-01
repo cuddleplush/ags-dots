@@ -2,6 +2,7 @@ import { easyAsync } from "ts/utils"
 
 const uptime = Variable('oops', { poll: [10000, ['bash', '-c', 'uptime -p | tail -c +4']]})
 const kver = Utils.exec(`bash -c "uname -r | cut -d "-" -f1"`)
+const who = Utils.exec(`bash -c "whoami"`) + "@" + Utils.exec(`bash -c "hostname"`)
 
 export const header = () => Widget.Box({
     spacing: 8,
@@ -18,7 +19,7 @@ export const header = () => Widget.Box({
                     vertical: true,
                     vpack: "center",
                     children: [
-                        Widget.Label({ hpack: "start", label: "max@violet  " + kver}),
+                        Widget.Label({ hpack: "start", label: who + "  " + kver}),
                         Widget.Label({ hpack: "start", label: uptime.bind()}),
                     ]
                 }),
