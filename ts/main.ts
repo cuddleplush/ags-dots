@@ -1,6 +1,7 @@
 import { Bar } from "./bar/bar";
 import { Desktop } from "./desktop/desktop";
 import { ctrl } from "./ctrl/ctrl";
+import { power } from "./power/power";
 // import { NotificationPopups } from "./notifs/notifs";
 
 import { forMonitors } from "./utils";
@@ -15,6 +16,7 @@ App.config({
         ...forMonitors(Bar),
         ...forMonitors(Desktop),
         ...forMonitors(ctrl),
+        power()
         // NotificationPopups(),
     ]
 })
@@ -29,5 +31,5 @@ Utils.monitorFile(
     },
 )
 
-App.toggleWindow(`ctrl0`)
-App.toggleWindow(`ctrl1`)
+// App.toggleWindow(`ctrl0`)
+// App.toggleWindow(`ctrl1`)

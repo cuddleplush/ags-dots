@@ -15,6 +15,7 @@ const ctrlBox = () => Widget.Box({
 
 export const ctrl = (monitor: number) => Widget.Window({
     monitor,
+    visible: false,
     name: `ctrl${monitor}`,
     anchor: ['top', 'left'],
     exclusivity: 'normal',

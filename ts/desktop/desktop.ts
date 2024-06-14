@@ -9,6 +9,7 @@ export const Desktop = (monitor: number) => Widget.Window({
     keymode: 'none',
     name: `desktop${monitor}`,
     layer: 'background',
+    exclusivity: 'ignore',
     class_name: 'desktop',
     anchor: ['top', 'bottom', 'left', 'right'],
     child: DesktopBox(),

@@ -82,8 +82,8 @@ export const menu = Widget.Menu({
                 ],
             }),
         }),
-        Widget.MenuItem({ className: "menuitem-label", child: Widget.Separator({  vertical: false })}),
-        Item("Goblin Mode", () => easyAsync("pavucontrol")),
+        // Widget.MenuItem({ className: "menuitem-label", child: Widget.Separator({  vertical: false })}),
+        // Item("Goblin Mode", () => easyAsync("pavucontrol")),
     ],
 });
 

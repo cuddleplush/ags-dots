@@ -1,4 +1,6 @@
-export var muteCheck = Variable(false);
+import vars from "ts/vars";
+
+export var muteCheck = Variable(Utils.exec(`pactl get-source-mute ${vars.sourceID}`) === "Mute: no" ? false : true);
 globalThis.muteCheck = muteCheck;
 
 const Muted = () => Widget.Box({
