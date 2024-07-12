@@ -1,7 +1,6 @@
 const mpris = await Service.import("mpris")
 const players = mpris.bind("players")
 
-const FALLBACK_ICON = "audio-x-generic-symbolic"
 const PLAY_ICON = "media-playback-start-symbolic"
 const PAUSE_ICON = "media-playback-pause-symbolic"
 const PREV_ICON = "media-skip-backward-symbolic"

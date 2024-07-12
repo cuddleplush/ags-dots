@@ -6,7 +6,7 @@ const isempty = (monitor: number) => !hyprland.clients.find((c: any) => c.worksp
 
 export const empty = (monitor: number) => Widget.Label({
     className: "module-box-empty",
-    label: "Hyprland",
+    label: "Desktop",
     setup: (self: any) => self
         .hook(hyprland, (self: any, event?: string) => {
             switch(event) {

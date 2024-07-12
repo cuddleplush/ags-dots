@@ -1,4 +1,5 @@
 import { easyAsync } from "ts/utils"
+import { OpenWallpaper } from "ts/wallpaper"
 
 const uptime = Variable('oops', { poll: [10000, ['bash', '-c', 'uptime -p | tail -c +4']]})
 const kver = Utils.exec(`bash -c "uname -r | cut -d "-" -f1"`)
@@ -29,16 +30,17 @@ export const header = () => Widget.Box({
             spacing: 8,
             vertical: true,
             children: [
-                Widget.Button({
-                    label: "",
-                    className: "wp-btn",
-                    on_primary_click: () => easyAsync("wpmgr next")
-                        .catch((err: any) => print(err)),
-                    on_secondary_click: () => easyAsync("wpmgr back")
-                        .catch((err: any) => print(err)),
-                    on_middle_click: () => easyAsync("wpmgr switch")
-                        .catch((err: any) => print(err)),
-                }),
+                OpenWallpaper(),
+                // Widget.Button({
+                //     label: "",
+                //     className: "wp-btn",
+                //     on_primary_click: () => easyAsync("wpmgr next")
+                //         .catch((err: any) => print(err)),
+                //     on_secondary_click: () => easyAsync("wpmgr back")
+                //         .catch((err: any) => print(err)),
+                //     on_middle_click: () => easyAsync("wpmgr switch")
+                //         .catch((err: any) => print(err)),
+                // }),
                 Widget.Button({
                     label: "󰒓",
                     className: "wp-btn",
