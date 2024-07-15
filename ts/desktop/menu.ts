@@ -21,7 +21,7 @@ export const menu = Widget.Menu({
         Item("Music", () => easyAsync("tidal-hifi")),
         Item("Browser", () => easyAsync("librewolf")),
         Item("Screenshot", () => easyAsync("grimblast --notify copysave area")),
-        Widget.MenuItem({ className: "menuitem-label", child: Widget.Separator({  vertical: false })}),
+        Widget.MenuItem({ className: "menuitem-label", child: Widget.Separator({ vertical: false }) }),
         Widget.MenuItem({
             // className: "menuitem-label",
             child: Widget.Box({
@@ -61,7 +61,7 @@ export const menu = Widget.Menu({
                 ],
             }),
         }),
-        Widget.MenuItem({ className: "menuitem-label", child: Widget.Separator({  vertical: false })}),
+        Widget.MenuItem({ className: "menuitem-label", child: Widget.Separator({ vertical: false }) }),
         Widget.MenuItem({
             // className: "menuitem-label",
             child: Widget.Box({
@@ -86,4 +86,3 @@ export const menu = Widget.Menu({
         // Item("Goblin Mode", () => easyAsync("pavucontrol")),
     ],
 });
-

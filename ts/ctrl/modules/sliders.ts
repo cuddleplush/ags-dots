@@ -34,4 +34,3 @@ export const sliders = (type: string | undefined) => Widget.Box({
     css: "min-width: 180px",
     children: [icon(type), volslider(type)],
 })
-

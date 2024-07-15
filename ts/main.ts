@@ -2,7 +2,6 @@ import { Bar } from "./bar/bar";
 import { Desktop } from "./desktop/desktop";
 import { ctrl } from "./ctrl/ctrl";
 import { power } from "./power/power";
-import { Wallpaper, OpenWallpaper } from "./wallpaper";
 // import { NotificationPopups } from "./notifs/notifs";
 
 import { forMonitors } from "./utils";
@@ -18,7 +17,6 @@ App.config({
         ...forMonitors(Desktop),
         ...forMonitors(ctrl),
         power(),
-        Wallpaper()
         // NotificationPopups(),
     ]
 })
@@ -26,7 +24,7 @@ App.config({
 // Autoreload css
 Utils.monitorFile(
     `${App.configDir}/style`,
-    function() {
+    function () {
         Utils.exec(`sassc ${scss} ${css}`)
         App.resetCss()
         App.applyCss(css)

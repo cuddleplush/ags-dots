@@ -9,13 +9,13 @@ export const empty = (monitor: number) => Widget.Label({
     label: "Desktop",
     setup: (self: any) => self
         .hook(hyprland, (self: any, event?: string) => {
-            switch(event) {
+            switch (event) {
                 case "movewindow":
                 case "workspace":
                 case "openwindow":
                 case "closewindow":
                     self.visible = isempty(monitor)
-                break;
+                    break;
             }
         }, "event")
 });
@@ -28,14 +28,14 @@ const DummyItem = (address: string) => Widget.Box({
 const AppItem = (address: string) => {
     const client = hyprland.getClient(address)
     if (!client || client.class === "")
-    return DummyItem(address)
+        return DummyItem(address)
 
     const btn = Widget.Button({
         class_name: "module-box-task",
         tooltip_text: Utils.watch(client.title, hyprland, () =>
             hyprland.getClient(address)?.title || "",
         ),
-        child: Widget.Button({label: substitutes[client.class] || client.class, className: "module"}),
+        child: Widget.Button({ label: substitutes[client.class] || client.class, className: "module" }),
         setup: (w: any) => w.hook(hyprland, () => {
             w.toggleClassName("active", hyprland.active.client.address === address)
         }),
@@ -55,9 +55,9 @@ function sortItems<T extends { attribute: { address: string } }>(arr: T[]) {
     })
 }
 
-const reCalcChildren = (monitor: number) => 
-    sortItems(hyprland.clients.filter((c: any) => 
-        c.workspace.id === hyprland.monitors[monitor].activeWorkspace.id).map((c: any) => 
+const reCalcChildren = (monitor: number) =>
+    sortItems(hyprland.clients.filter((c: any) =>
+        c.workspace.id === hyprland.monitors[monitor].activeWorkspace.id).map((c: any) =>
             AppItem(c.address)))
 
 export const taskbar = (monitor: number) => Widget.Box({
@@ -72,7 +72,7 @@ export const taskbar = (monitor: number) => Widget.Box({
                 case "closewindow":
                     w.children.forEach((ch: any) => ch.destroy())
                     w.children = reCalcChildren(monitor)
-                break;
+                    break;
             }
         }, "event")
 })

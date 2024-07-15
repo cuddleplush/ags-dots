@@ -14,7 +14,7 @@ const Lang = () => Widget.Box({
             setup: (self: any) => self
                 .hook(Hyprland, (label: any, _kbName: any, layoutName = "EN") => {
                     label.label = layoutName.includes("Russian") ? "RU" : "EN"
-                }, 'keyboard-layout' )
+                }, 'keyboard-layout')
         })
     ],
 });

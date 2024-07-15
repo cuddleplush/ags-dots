@@ -17,7 +17,7 @@ function Player(player) {
     const title = Widget.Label({
         class_name: "title",
         truncate: 'end',
-        maxWidthChars:28,
+        maxWidthChars: 28,
         hpack: "start",
         label: player.bind("track_title"),
     })

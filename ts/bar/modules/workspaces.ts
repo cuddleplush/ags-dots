@@ -13,8 +13,7 @@ const WorkspaceButton = (i: number, monitor: number) => {
             label: icons[iconIndex],
             class_name: "ws-button-label"
         })
-    })
-    .hook(Hyprland.active.workspace, button => {
+    }).hook(Hyprland.active.workspace, button => {
         button.toggleClassName("active", Hyprland.active.workspace.id === i);
     });
 };
@@ -26,8 +25,7 @@ const Workspaces = (monitor: number) => Widget.EventBox({
             const i = idx + (monitor * 10 + 1);
             return WorkspaceButton(i, monitor);
         })
-    })
-    .hook(Hyprland, box => {
+    }).hook(Hyprland, box => {
         box.children.forEach((button, idx) => {
             const workspaceIndex = idx + (monitor * 10 + 1);
             const workspace = Hyprland.getWorkspace(workspaceIndex);
