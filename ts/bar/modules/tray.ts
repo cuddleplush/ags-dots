@@ -2,9 +2,8 @@ const systemtray = await Service.import("systemtray")
 import Gdk from "gi://Gdk"
 
 const SysTrayItem = (item: any) => Widget.Button({
-    class_name: "tray-item",
     child: Widget.Icon({ icon: item.bind("icon") }),
-    tooltip_markup: item.bind("tooltip_markup"),
+    // tooltip_markup: item.bind("tooltip_markup"),
     setup: self => {
         const { menu } = item
         if (!menu)
@@ -28,7 +27,7 @@ const SysTrayItem = (item: any) => Widget.Button({
         btn, Gdk.Gravity.SOUTH, Gdk.Gravity.NORTH, null),
 })
 
-export default () => Widget.Box({ className: "module-box", spacing: 8, css: "padding: 0 8px;" })
+export default () => Widget.Box({ className: "module", spacing: 8, css: "padding: 0 8px;" })
     .bind("children", systemtray, "items", i => i
         // .filter(({ id }) => !ignore.value.includes(id))
         .map(SysTrayItem))

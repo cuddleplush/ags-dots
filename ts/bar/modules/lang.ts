@@ -4,11 +4,12 @@ import vars from "ts/vars";
 const Hyprland = await Service.import("hyprland")
 
 const Lang = () => Widget.Box({
-    className: "module-box",
+    // className: "module-box",
     children: [
-        Widget.Label({ label: "", className: "icon" }),
+        Widget.Label({ label: "", className: "icon lang" }),
         Widget.Button({
-            className: "module",
+            className: "module lang",
+			tooltipText: "Switch Input Language",
             on_clicked: () => easyAsync(`hyprctl switchxkblayout ${vars.keyboardID} next`)
                 .catch((err: any) => print(err)),
             setup: (self: any) => self

@@ -4,52 +4,11 @@
   background-color: $bg;
   min-height: 45px;
   padding: 0 8px;
-}
-
-.module-box {
-  transition: all 300ms cubic-bezier(0, 0, 0.2, 1);
-  background-color: $bg2;
-  margin: 8px 0px;
-  &:hover {
-    background-color: $bg4;
+  margin-bottom: 8px;
+  @if $bar-float {
+    margin: 10px 10px;
+    box-shadow: 0px 0px 4px 1px rgba($color: #0a0a0a, $alpha: 0.6);
   }
-}
-
-.module-box-empty {
-  transition: all 300ms cubic-bezier(0, 0, 0.2, 1);
-  background-color: $bg2;
-  margin: 8px 0px;
-  color: $fg;
-  padding: 0px 8px;
-  &:hover {
-    background-color: $bg4;
-  }
-}
-
-.module-box-task {
-  transition: all 300ms cubic-bezier(0, 0, 0.2, 1);
-  background-color: $bg2;
-  margin: 8px 0px;
-  &:hover {
-    background-color: $bg4;
-  }
-  &.active {
-    background-color: $bg3;
-  }
-}
-
-.module {
-  color: $fg;
-  padding: 0px 8px;
-  transition: all 300ms cubic-bezier(0, 0, 0.2, 1);
-  &:hover {
-    background-color: $bg4;
-  }
-}
-
-.module-muted label{
-  padding: 0px 8px;
-  color: $red;
 }
 
 .icon {
@@ -57,30 +16,115 @@
   min-width: 29px;
   background-color: $bg3;
   font-weight: normal;
-}
+  font-size: 16px;
+  margin: 8px 0;
 
-.launcher {
-  min-height: 29px;
-  min-width: 29px;
-  background-color: $bg3;
-  font-size: 20px;
-  font-weight: normal;
-  margin: 8px 0px;
-  transition: all 300ms cubic-bezier(0, 0, 0.2, 1);
+  @if $bar-colors {
+    &.lang {
+      background-color: $pink;
+      color: $bg;
+    }
 
-  &:hover {
-    background-color: $bg4;
-    // label { color: $bg; }
+    &.date {
+      background-color: $blue;
+      color: $bg;
+    }
+
+    &.time {
+      background-color: $pink;
+      color: $bg;
+    }
+    &.spotify {
+      background-color: $gween;
+      color: $bg;
+    }
   }
 }
 
+.module {
+  padding: 0px 8px;
+  transition: all 300ms cubic-bezier(0, 0, 0.2, 1);
+  margin: 8px 0;
+  background-color: $bg2;
+  padding-top: 1px;
+  font-size: 15px;
+
+  &:hover {
+    background-color: $bg4;
+    label {
+      font-weight: bold;
+    }
+  }
+  
+  &.active {
+    background-color: $bg3;
+    &:hover {
+      background-color: $bg4;
+    }
+  }
+
+  &.muted { 
+    padding: 0px 0px;
+    min-height: 29px;
+    min-width: 29px;
+    label {
+      color: $red;
+    }
+  }
+
+  &.ctrl {
+    padding: 0px 0px;
+    min-height: 29px;
+    min-width: 29px;
+    background-color: $bg3;
+    font-size: 20px;
+    @if $bar-colors { 
+      background-color: $purp;
+      label { color: $bg; }
+
+      &:hover {
+        background-color: $fg;
+      }
+    }
+    &:hover {
+      background-color: $bg4;
+    }
+  }
+
+  @if $bar-colors {
+    &.lang {
+      label { color: $pink; }
+      background-color: transparentize($pink, 0.7);;
+    }
+
+    &.date {
+      label { color: $blue; }
+      background-color: transparentize($blue, 0.7);;
+    }
+
+    &.time {
+      label { color: $pink; }
+      background-color: transparentize($pink, 0.7);;
+    }
+
+    &.spotify {
+      label { color: $gween; }
+      background-color: transparentize($gween, 0.7);;
+    }
+  }
+}
+
+tooltip {
+  background-color: $bg;
+}
 
 .ws-button {
   min-width: 60px;
   margin: 8px 0px;
 
   label {
-    transition: all 300ms cubic-bezier(0, 0, 0.2, 1);
+    transition: background-color 300ms cubic-bezier(0, 0, 0.2, 1);
+    padding-top: 1px;
   }
 
   &.occupied {
@@ -89,22 +133,53 @@
 
   &:not(.occupied) {
     background-color: $bg2;
-    .ws-button-label {
+
+    label {
       color: $bg4;
     }
   }
 
   &.active {
-    .ws-button-label {
+    label {
       background-color: $fg;
       color: $bg;
+      font-weight: bold;
+    }
+  }
+
+  @if $bar-colors {
+    &.active {
+      .ws-button-label {
+        color: $bg;
+        background: linear-gradient(
+          315deg,
+          $cyan,
+          $blue,
+          $purp,
+          );
+        background-size: 480% 480%;
+        animation: gradient 8s ease infinite;
+      }
     }
   }
 
   &:not(.active):hover {
-    .ws-button-label {
+    label {
       background-color: $bg4;
+      font-weight: bold;
       color: $fg;
     }
+  }
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
   }
 }

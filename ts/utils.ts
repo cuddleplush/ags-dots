@@ -14,3 +14,4 @@ export function forMonitors(widget: (monitor: number) => Gtk.Window) {
 export function easyAsync(cmd) {
     return Utils.execAsync(["bash", "-c", `${cmd} &`])
 }
+

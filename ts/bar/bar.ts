@@ -1,10 +1,11 @@
 import Clock from "./modules/date";
 import Workspaces from "./modules/workspaces";
 import Launcher from "./modules/launcher";
-import { taskbar, empty } from "./modules/taskbar";
+import { Taskbar, Empty } from "./modules/taskbar";
 import Tray from "./modules/tray";
 import Muted from "./modules/muted";
 import Lang from "./modules/lang";
+import Media from "./modules/player";
 
 const StartModules = (monitor: number) =>
     Widget.Box({
@@ -13,24 +14,28 @@ const StartModules = (monitor: number) =>
         children: [
             Launcher(monitor),
             Workspaces(monitor),
-            empty(monitor),
-            taskbar(monitor),
+            Empty(monitor),
+            Taskbar(monitor),
         ],
     });
 
 const CenterModules = () =>
-    Widget.Box({
-        children: [],
-    });
+	Widget.Box({
+		hpack: "center",
+		spacing: 8,
+		children: [
+		]
+	})
 
 const EndModules = () =>
     Widget.Box({
         hpack: "end",
         spacing: 8,
         children: [
+			Media(),
             Tray(),
-            Muted(),
             Lang(),
+            Muted(),
             Clock(),
         ],
     });

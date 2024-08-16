@@ -1,5 +1,6 @@
 export const substitutes = {
     "org.gnome.Calendar": "Calendar",
+    "footclient": "foot",
     "org.gnome.Polari": "Polari",
     "launcher": "Lunar Client",
     "org.prismlauncher.PrismLauncher": "Prism Launcher",
@@ -10,6 +11,6 @@ export const substitutes = {
 };
 
 export default {
-    keyboardID: "hfd.cn-usb-device",
+    keyboardID: "hs6209-usb-dongle",
     wsNum: 5,
 };

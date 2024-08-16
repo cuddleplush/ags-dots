@@ -1,34 +1,41 @@
-const mpris = await Service.import("mpris")
-const players = mpris.bind("players")
+const mpris = await Service.import('mpris')
 
-function Player(player) {
-    const title = Widget.Label({
-        class_name: "title",
-        truncate: 'end',
-        maxWidthChars:28,
-        hpack: "start",
-        label: player.bind("track_title"),
-    })
+const Player = player => Widget.Button({
+	className: "module spotify",
+	onClicked: () => player.playPause(),
+	child: Widget.Label().hook(player, label => {
+		const { track_artists, track_title } = player;
+		label.label = `${track_artists.join(', ')} - ${track_title}`;
+	}),
+})
 
-    const artist = Widget.Label({
-        class_name: "artist",
-        wrap: true,
-        hpack: "start",
-        label: player.bind("track_artists").transform(a => a.join(", ")),
-    })
+const Icon = () => Widget.Label({ label: "󰋋", className: "icon spotify" })
+
+
+const Media = () => {
+	return Widget.Box({
+		className: "module-box spotify",
+	}).hook(mpris, (self, busName) => {
+			if (!busName || busName != "org.mpris.MediaPlayer2.spotify") {
+				self.visible = false
+			} else {
+				self.children = [ Icon(), Player(mpris.getPlayer("org.mpris.MediaPlayer2.spotify")) ];
+			}
+		}, "player-changed")
+		.hook(mpris, (self, busName) => {
+			if (busName = "org.mpris.MediaPlayer2.spotify") {
+				self.visible = false
+			} else {
+				self.children = [ Icon(), Player(mpris.getPlayer("org.mpris.MediaPlayer2.spotify")) ];
+			}
+		}, "player-closed")
+		.hook(mpris, (self, busName) => {
+			if (!busName || busName != "org.mpris.MediaPlayer2.spotify") {
+				self.visible = false
+			} else {
+				self.children = [ Icon(), Player(mpris.getPlayer("org.mpris.MediaPlayer2.spotify")) ];
+			}
+		}, "player-added")
 }
-
-const Media = () => Widget.Box({
-    spacing: 8,
-    children: [
-        Widget.Box({
-            className: "module-box",
-            children: [
-                Widget.Label({ label: "󱪺", className: "icon" }),
-                Widget.Button({ label: Date.bind(), className: "module", on_clicked: () => easyAsync("gnome-calendar") })
-            ],
-        }),
-    ],
-});
 
 export default Media

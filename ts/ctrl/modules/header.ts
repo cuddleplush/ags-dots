@@ -2,7 +2,7 @@ import { easyAsync } from "ts/utils"
 
 const uptime = Variable('oops', { poll: [10000, ['bash', '-c', 'uptime -p | tail -c +4']] })
 const kver = Utils.exec(`bash -c "uname -r | cut -d "-" -f1"`)
-const who = Utils.exec(`bash -c "whoami"`) + "@" + Utils.exec(`bash -c "hostname"`)
+const who = Utils.exec(`bash -c "whoami"`) + " • " + Utils.exec(`bash -c "hostname"`)
 
 export const header = () => Widget.Box({
     spacing: 8,
@@ -12,15 +12,15 @@ export const header = () => Widget.Box({
             children: [
                 Widget.Icon({
                     className: "pic",
-                    icon: `${App.configDir}/assets/pfp1.jpg`,
+                    icon: `${App.configDir}/assets/pfp2.jpg`,
                     size: 70,
                 }),
                 Widget.Box({
                     vertical: true,
                     vpack: "center",
                     children: [
-                        Widget.Label({ hpack: "start", label: who + "  " + kver }),
-                        Widget.Label({ hpack: "start", label: uptime.bind() }),
+                        Widget.Label({ label: who + " • " + kver}),
+                        Widget.Label({ label: uptime.bind() }),
                     ]
                 }),
             ]
@@ -33,6 +33,8 @@ export const header = () => Widget.Box({
                     label: "",
                     className: "wp-btn",
                     on_primary_click: () => easyAsync("rofi-wall.sh")
+                        .catch((err: any) => print(err)),
+                    on_secondary_click: () => easyAsync("echo 'playlist-next' | socat - /tmp/mpv-socket")
                         .catch((err: any) => print(err)),
                 }),
                 Widget.Button({

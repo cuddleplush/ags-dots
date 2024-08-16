@@ -18,7 +18,7 @@ export const ctrl = (monitor: number) =>
         exclusivity: "normal",
         keymode: "on-demand",
         layer: "top",
-        margins: [10, 10],
+        margins: [0, 10],
         child: ctrlBox(),
     }).on("key-press-event", () => {
         App.toggleWindow(`ctrl${monitor}`);

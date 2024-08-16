@@ -18,7 +18,7 @@ export const menu = Widget.Menu({
     children: [
         Item("Terminal", () => easyAsync("foot")),
         Item("Audio", () => easyAsync("pavucontrol")),
-        Item("Music", () => easyAsync("tidal-hifi")),
+        Item("Music", () => easyAsync("spotify")),
         Item("Browser", () => easyAsync("librewolf")),
         Item("Screenshot", () => easyAsync("grimblast --notify copysave area")),
         Widget.MenuItem({ className: "menuitem-label", child: Widget.Separator({ vertical: false }) }),
