@@ -12,7 +12,7 @@ export const header = () => Widget.Box({
             children: [
                 Widget.Icon({
                     className: "pic",
-                    icon: `${App.configDir}/assets/pfp2.jpg`,
+                    icon: `${App.configDir}/assets/pfp3.jpg`,
                     size: 70,
                 }),
                 Widget.Box({

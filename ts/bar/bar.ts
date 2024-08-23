@@ -8,16 +8,16 @@ import Lang from "./modules/lang";
 import Media from "./modules/player";
 
 const StartModules = (monitor: number) =>
-    Widget.Box({
-        hpack: "start",
-        spacing: 8,
-        children: [
-            Launcher(monitor),
-            Workspaces(monitor),
-            Empty(monitor),
-            Taskbar(monitor),
-        ],
-    });
+	Widget.Box({
+		hpack: "start",
+		spacing: 8,
+		children: [
+			Launcher(monitor),
+			Workspaces(monitor),
+			Empty(monitor),
+			Taskbar(monitor),
+		],
+	});
 
 const CenterModules = () =>
 	Widget.Box({
@@ -28,29 +28,29 @@ const CenterModules = () =>
 	})
 
 const EndModules = () =>
-    Widget.Box({
-        hpack: "end",
-        spacing: 8,
-        children: [
+	Widget.Box({
+		hpack: "end",
+		spacing: 8,
+		children: [
 			Media(),
-            Tray(),
-            Lang(),
-            Muted(),
-            Clock(),
-        ],
-    });
+			Tray(),
+			Lang(),
+			Muted(),
+			Clock(),
+		],
+	});
 
 export const Bar = (monitor: number) =>
-    Widget.Window({
-        monitor,
-        name: `bar-${monitor}`,
-        anchor: ["left", "top", "right"],
-        exclusivity: "exclusive",
-        margins: [0, 0, 0, 0],
-        child: Widget.CenterBox({
-            className: "bar",
-            startWidget: StartModules(monitor),
-            centerWidget: CenterModules(),
-            endWidget: EndModules(),
-        }),
-    });
+	Widget.Window({
+		monitor,
+		name: `bar-${monitor}`,
+		anchor: ["left", "top", "right"],
+		exclusivity: "exclusive",
+		margins: [0, 0, 0, 0],
+		child: Widget.CenterBox({
+			className: "bar",
+			startWidget: StartModules(monitor),
+			centerWidget: CenterModules(),
+			endWidget: EndModules(),
+		}),
+	});
